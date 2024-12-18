@@ -30,6 +30,10 @@
         {
             components = new System.ComponentModel.Container();
             toolTip_NVA = new ToolTip(components);
+            buttonDel_NVA = new Button();
+            buttonDownload_NVA = new Button();
+            buttonAdd_NVA = new Button();
+            buttonOpen_NVA = new Button();
             openFileDialog_NVA = new OpenFileDialog();
             saveFileDialog_NVA = new SaveFileDialog();
             menuStrip1 = new MenuStrip();
@@ -37,10 +41,8 @@
             оПрограммеToolStripMenuItem = new ToolStripMenuItem();
             оРазработчикеToolStripMenuItem = new ToolStripMenuItem();
             groupBoxData_NVA = new GroupBox();
-            buttonDel_NVA = new Button();
-            buttonAdd_NVA = new Button();
-            buttonDownload_NVA = new Button();
-            buttonOpen_NVA = new Button();
+            groupBox1 = new GroupBox();
+            groupBoxWorkData_NVA = new GroupBox();
             dataGridViewData_NVA = new DataGridView();
             Number_NVA = new DataGridViewTextBoxColumn();
             Name_NVA = new DataGridViewTextBoxColumn();
@@ -48,14 +50,61 @@
             Money_NVA = new DataGridViewTextBoxColumn();
             Phone_Nva = new DataGridViewTextBoxColumn();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            groupBoxWorkData_NVA = new GroupBox();
-            groupBox1 = new GroupBox();
             menuStrip1.SuspendLayout();
             groupBoxData_NVA.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewData_NVA).BeginInit();
-            groupBoxWorkData_NVA.SuspendLayout();
             groupBox1.SuspendLayout();
+            groupBoxWorkData_NVA.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewData_NVA).BeginInit();
             SuspendLayout();
+            // 
+            // toolTip_NVA
+            // 
+            toolTip_NVA.ToolTipIcon = ToolTipIcon.Info;
+            // 
+            // buttonDel_NVA
+            // 
+            buttonDel_NVA.Image = Properties.Resources.basket_put;
+            buttonDel_NVA.Location = new Point(127, 38);
+            buttonDel_NVA.Name = "buttonDel_NVA";
+            buttonDel_NVA.Size = new Size(72, 53);
+            buttonDel_NVA.TabIndex = 4;
+            toolTip_NVA.SetToolTip(buttonDel_NVA, "Удалить данные о магазине");
+            buttonDel_NVA.UseVisualStyleBackColor = true;
+            buttonDel_NVA.Click += buttonDel_NVA_Click;
+            // 
+            // buttonDownload_NVA
+            // 
+            buttonDownload_NVA.Image = Properties.Resources.accept;
+            buttonDownload_NVA.Location = new Point(126, 38);
+            buttonDownload_NVA.Name = "buttonDownload_NVA";
+            buttonDownload_NVA.Size = new Size(71, 54);
+            buttonDownload_NVA.TabIndex = 2;
+            toolTip_NVA.SetToolTip(buttonDownload_NVA, "Сохранить изменёную базу данных\r\n");
+            buttonDownload_NVA.UseVisualStyleBackColor = true;
+            buttonDownload_NVA.Click += buttonDownload_NVA_Click;
+            // 
+            // buttonAdd_NVA
+            // 
+            buttonAdd_NVA.Image = Properties.Resources.add1;
+            buttonAdd_NVA.Location = new Point(31, 37);
+            buttonAdd_NVA.Name = "buttonAdd_NVA";
+            buttonAdd_NVA.Size = new Size(70, 54);
+            buttonAdd_NVA.TabIndex = 3;
+            toolTip_NVA.SetToolTip(buttonAdd_NVA, "Добавить данные о новом магазине");
+            buttonAdd_NVA.UseVisualStyleBackColor = true;
+            buttonAdd_NVA.Click += buttonAdd_NVA_Click;
+            // 
+            // buttonOpen_NVA
+            // 
+            buttonOpen_NVA.FlatAppearance.BorderColor = Color.FromArgb(192, 255, 192);
+            buttonOpen_NVA.Image = Properties.Resources.database_add;
+            buttonOpen_NVA.Location = new Point(34, 38);
+            buttonOpen_NVA.Name = "buttonOpen_NVA";
+            buttonOpen_NVA.Size = new Size(77, 54);
+            buttonOpen_NVA.TabIndex = 1;
+            toolTip_NVA.SetToolTip(buttonOpen_NVA, "Загрузить исходную базу данных");
+            buttonOpen_NVA.UseVisualStyleBackColor = true;
+            buttonOpen_NVA.Click += Openbutton_NVA_Click;
             // 
             // openFileDialog_NVA
             // 
@@ -102,63 +151,44 @@
             groupBoxData_NVA.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             groupBoxData_NVA.Location = new Point(0, 33);
             groupBoxData_NVA.Name = "groupBoxData_NVA";
-            groupBoxData_NVA.Size = new Size(1123, 615);
+            groupBoxData_NVA.Size = new Size(1123, 642);
             groupBoxData_NVA.TabIndex = 2;
             groupBoxData_NVA.TabStop = false;
             groupBoxData_NVA.Text = "База данных ИП Новикова В.А.";
             // 
-            // buttonDel_NVA
+            // groupBox1
             // 
-            buttonDel_NVA.Image = Properties.Resources.basket_put;
-            buttonDel_NVA.Location = new Point(127, 38);
-            buttonDel_NVA.Name = "buttonDel_NVA";
-            buttonDel_NVA.Size = new Size(72, 53);
-            buttonDel_NVA.TabIndex = 4;
-            buttonDel_NVA.UseVisualStyleBackColor = true;
-            buttonDel_NVA.Click += buttonDel_NVA_Click;
+            groupBox1.Controls.Add(buttonAdd_NVA);
+            groupBox1.Controls.Add(buttonDel_NVA);
+            groupBox1.Location = new Point(295, 39);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(259, 98);
+            groupBox1.TabIndex = 6;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Добавление/удаление данных";
             // 
-            // buttonAdd_NVA
+            // groupBoxWorkData_NVA
             // 
-            buttonAdd_NVA.Image = Properties.Resources.add1;
-            buttonAdd_NVA.Location = new Point(128, 38);
-            buttonAdd_NVA.Name = "buttonAdd_NVA";
-            buttonAdd_NVA.Size = new Size(70, 54);
-            buttonAdd_NVA.TabIndex = 3;
-            buttonAdd_NVA.UseVisualStyleBackColor = true;
-            buttonAdd_NVA.Click += buttonAdd_NVA_Click;
-            // 
-            // buttonDownload_NVA
-            // 
-            buttonDownload_NVA.Image = Properties.Resources.accept;
-            buttonDownload_NVA.Location = new Point(50, 38);
-            buttonDownload_NVA.Name = "buttonDownload_NVA";
-            buttonDownload_NVA.Size = new Size(71, 54);
-            buttonDownload_NVA.TabIndex = 2;
-            buttonDownload_NVA.UseVisualStyleBackColor = true;
-            buttonDownload_NVA.Click += buttonDownload_NVA_Click;
-            // 
-            // buttonOpen_NVA
-            // 
-            buttonOpen_NVA.FlatAppearance.BorderColor = Color.FromArgb(192, 255, 192);
-            buttonOpen_NVA.Image = Properties.Resources.database_add;
-            buttonOpen_NVA.Location = new Point(34, 38);
-            buttonOpen_NVA.Name = "buttonOpen_NVA";
-            buttonOpen_NVA.Size = new Size(77, 54);
-            buttonOpen_NVA.TabIndex = 1;
-            buttonOpen_NVA.UseVisualStyleBackColor = true;
-            buttonOpen_NVA.Click += Openbutton_NVA_Click;
+            groupBoxWorkData_NVA.Controls.Add(buttonOpen_NVA);
+            groupBoxWorkData_NVA.Controls.Add(buttonDownload_NVA);
+            groupBoxWorkData_NVA.Location = new Point(36, 39);
+            groupBoxWorkData_NVA.Name = "groupBoxWorkData_NVA";
+            groupBoxWorkData_NVA.Size = new Size(233, 98);
+            groupBoxWorkData_NVA.TabIndex = 5;
+            groupBoxWorkData_NVA.TabStop = false;
+            groupBoxWorkData_NVA.Text = "Загрузка/Выгрузка файла";
             // 
             // dataGridViewData_NVA
             // 
             dataGridViewData_NVA.BackgroundColor = SystemColors.ButtonFace;
             dataGridViewData_NVA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewData_NVA.Columns.AddRange(new DataGridViewColumn[] { Number_NVA, Name_NVA, Adress_NVA, Money_NVA, Phone_Nva });
-            dataGridViewData_NVA.Location = new Point(23, 152);
+            dataGridViewData_NVA.Location = new Point(24, 152);
             dataGridViewData_NVA.Name = "dataGridViewData_NVA";
             dataGridViewData_NVA.RowHeadersVisible = false;
             dataGridViewData_NVA.RowHeadersWidth = 50;
             dataGridViewData_NVA.RowTemplate.Height = 24;
-            dataGridViewData_NVA.Size = new Size(1077, 457);
+            dataGridViewData_NVA.Size = new Size(1077, 484);
             dataGridViewData_NVA.TabIndex = 0;
             // 
             // Number_NVA
@@ -201,45 +231,26 @@
             Phone_Nva.SortMode = DataGridViewColumnSortMode.NotSortable;
             Phone_Nva.Width = 214;
             // 
-            // groupBoxWorkData_NVA
-            // 
-            groupBoxWorkData_NVA.Controls.Add(buttonAdd_NVA);
-            groupBoxWorkData_NVA.Controls.Add(buttonOpen_NVA);
-            groupBoxWorkData_NVA.Location = new Point(36, 39);
-            groupBoxWorkData_NVA.Name = "groupBoxWorkData_NVA";
-            groupBoxWorkData_NVA.Size = new Size(233, 98);
-            groupBoxWorkData_NVA.TabIndex = 5;
-            groupBoxWorkData_NVA.TabStop = false;
-            groupBoxWorkData_NVA.Text = "Загрузка/Выгрузка файла";
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(buttonDel_NVA);
-            groupBox1.Controls.Add(buttonDownload_NVA);
-            groupBox1.Location = new Point(295, 39);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(259, 98);
-            groupBox1.TabIndex = 6;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Добавление/удаление данных";
-            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FloralWhite;
-            ClientSize = new Size(1123, 730);
+            ClientSize = new Size(1123, 677);
             Controls.Add(groupBoxData_NVA);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            MaximumSize = new Size(1139, 720);
+            MinimumSize = new Size(1139, 715);
             Name = "FormMain";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Сеть магазинов | Выполнила Новикова В. А.";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             groupBoxData_NVA.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewData_NVA).EndInit();
-            groupBoxWorkData_NVA.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
+            groupBoxWorkData_NVA.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewData_NVA).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

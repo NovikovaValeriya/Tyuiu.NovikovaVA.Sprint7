@@ -28,32 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbout));
+            labelInstruction_NVA = new Label();
             SuspendLayout();
             // 
-            // pictureBox1
+            // labelInstruction_NVA
             // 
-            pictureBox1.Location = new Point(39, 44);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(116, 136);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            labelInstruction_NVA.AutoSize = true;
+            labelInstruction_NVA.BackColor = SystemColors.Menu;
+            labelInstruction_NVA.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            labelInstruction_NVA.Location = new Point(3, 9);
+            labelInstruction_NVA.Name = "labelInstruction_NVA";
+            labelInstruction_NVA.Size = new Size(522, 160);
+            labelInstruction_NVA.TabIndex = 0;
+            labelInstruction_NVA.Text = resources.GetString("labelInstruction_NVA.Text");
+            labelInstruction_NVA.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FormAbout
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(525, 226);
-            Controls.Add(pictureBox1);
+            ClientSize = new Size(525, 171);
+            Controls.Add(labelInstruction_NVA);
             Name = "FormAbout";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Руководство пользователя";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private Label labelInstruction_NVA;
     }
 }

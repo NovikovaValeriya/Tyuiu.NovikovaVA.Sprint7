@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="labelInfo_NVA.Text" xml:space="preserve">
+    <value>Разработчик: Новикова В.А.
+Группа: ИСТНб-24-1
+
+Программа разработана в рамках изучения языка C#
+
+Тюменский Индустриальный Университет 2024
+Высшая Школа Цифровых Технологий  2024
+
+Внутреннее имя: Tyuiu.NovikovaVA.Sprint7.Project.V2
+</value>
+  </data>
 </root>

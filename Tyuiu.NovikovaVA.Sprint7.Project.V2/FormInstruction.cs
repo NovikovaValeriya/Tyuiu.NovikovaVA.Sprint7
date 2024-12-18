@@ -16,5 +16,10 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
         {
             InitializeComponent();
         }
+        private void buttonOk_NVA_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
+    
 }

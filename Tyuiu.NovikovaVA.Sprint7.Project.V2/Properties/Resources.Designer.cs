@@ -109,5 +109,15 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DSC_0030_1___2_ {
+            get {
+                object obj = ResourceManager.GetObject("DSC_0030[1] (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
