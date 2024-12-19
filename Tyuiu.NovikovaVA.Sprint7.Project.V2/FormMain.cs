@@ -1,3 +1,5 @@
+using System.Data;
+using System.Windows.Forms;
 using Tyuiu.NovikovaVA.Sprint7.Project.V2.Lib;
 namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
 {
@@ -119,18 +121,38 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
         }
         private void buttonFilter_NVA_Click(object sender, EventArgs e)
         {
-            int columnIndex = comboBoxNames_NVA.SelectedIndex;
-            if (columnIndex < 0 || columnIndex >= dataGridViewData_NVA.ColumnCount) return;
-
-            string filterText = textBoxFilter_NVA.Text.ToUpper();
-
-            foreach (DataGridViewRow r in dataGridViewData_NVA.Rows)
+            string keyValue = textBoxFilter_NVA.Text;
+            try
             {
-                string cellValue = r.Cells[columnIndex].Value?.ToString().ToUpper() ?? "";
-                r.Visible = cellValue.Contains(filterText);
+                if (string.IsNullOrWhiteSpace(keyValue))
+                {
+                    MessageBox.Show("Пожалуйста, введите значение ключа.");
+                    return;
+                }
+                int key = int.Parse(keyValue);
+
+                DataTable dataTable = (DataTable)dataGridViewData_NVA.DataSource;
+                DataRow[] foundRows = dataTable.Select($"Ежемесечная выручка = {346346222}"); // Замените "ID" на имя столбца с ключом
+
+                DataTable filteredTable = dataTable.Clone(); // Создаем копию структуры таблицы
+                foreach (DataRow row in foundRows)
+                {
+                    filteredTable.ImportRow(row);
+                }
+
+                dataGridViewData_NVA.DataSource = filteredTable;
+
             }
-            dataGridViewData_NVA.CurrentCell = null; 
+            catch (FormatException)
+            {
+                MessageBox.Show("Некорректный формат ключа. Введите целое число.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
         }
+
         private void textBoxFilter_NVA_TextChanged(object sender, EventArgs e)
         {
 

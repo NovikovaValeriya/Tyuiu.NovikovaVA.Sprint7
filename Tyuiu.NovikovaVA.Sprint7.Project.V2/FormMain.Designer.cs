@@ -234,7 +234,7 @@
             groupBoxFilter_NVA.Size = new Size(569, 113);
             groupBoxFilter_NVA.TabIndex = 11;
             groupBoxFilter_NVA.TabStop = false;
-            groupBoxFilter_NVA.Text = "Фильтрация";
+            groupBoxFilter_NVA.Text = "Фильтрация и поиск";
             // 
             // label3
             // 
