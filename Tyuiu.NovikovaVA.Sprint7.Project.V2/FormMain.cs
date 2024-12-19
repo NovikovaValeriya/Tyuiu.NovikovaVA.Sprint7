@@ -81,9 +81,31 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
         }
         private void buttonDel_NVA_Click(object sender, EventArgs e)
         {
-            int ind = dataGridViewData_NVA.SelectedCells[0].RowIndex;
-            dataGridViewData_NVA.Rows.RemoveAt(ind);
-            if (dataGridViewData_NVA.Rows.Count == 0) { buttonDel_NVA.Enabled = false; }
+            if (dataGridViewData_NVA.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Пожалуйста выберите строку для удаления.", "Строка не выбрана", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                // Confirm deletion (optional, but highly recommended).
+                if (MessageBox.Show("Вы уверены, что хотите удалить строчку?", "Подтвердить удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int rowIndex = dataGridViewData_NVA.SelectedCells[0].RowIndex;
+                    dataGridViewData_NVA.Rows.RemoveAt(rowIndex);
+                    dataGridViewData_NVA.ClearSelection(); // Clear selection.
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка удаления строки: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (dataGridViewData_NVA.Rows.Count == 0)
+            {
+                buttonDel_NVA.Enabled = false;
+            }
         }
         private void toolStripMenuItemInstruction_NVA_Click(object sender, EventArgs e)
         {
@@ -92,38 +114,70 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
         }
         private void comboBoxNames_NVA_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxNames_NVA.SelectedIndex != 0)
-            {
-                textBoxFilter_NVA.Enabled = true;
-                buttonFilter_NVA.Enabled = true;
-            }
-            else
-            {
-                textBoxFilter_NVA.Enabled = false;
-                buttonFilter_NVA.Enabled = false;
-            }
+            textBoxFilter_NVA.Enabled = (comboBoxNames_NVA.SelectedIndex != 0);
+            buttonFilter_NVA.Enabled = (comboBoxNames_NVA.SelectedIndex != 0);
         }
         private void buttonFilter_NVA_Click(object sender, EventArgs e)
         {
+            int columnIndex = comboBoxNames_NVA.SelectedIndex;
+            if (columnIndex < 0 || columnIndex >= dataGridViewData_NVA.ColumnCount) return;
+
+            string filterText = textBoxFilter_NVA.Text.ToUpper();
+
             foreach (DataGridViewRow r in dataGridViewData_NVA.Rows)
             {
-                if (r.Cells[comboBoxNames_NVA.SelectedIndex - 1].Value.ToString().ToUpper().Contains(textBoxFilter_NVA.Text.ToUpper()))
-                {
-                    dataGridViewData_NVA.Rows[r.Index].Visible = true;
-                    dataGridViewData_NVA.Rows[r.Index].Selected = true;
-                }
-                else
-                {
-                    dataGridViewData_NVA.CurrentCell = null;
-                    dataGridViewData_NVA.Rows[r.Index].Visible = false;
-                }
+                string cellValue = r.Cells[columnIndex].Value?.ToString().ToUpper() ?? "";
+                r.Visible = cellValue.Contains(filterText);
             }
+            dataGridViewData_NVA.CurrentCell = null; 
         }
         private void textBoxFilter_NVA_TextChanged(object sender, EventArgs e)
         {
 
         }
+        private void buttonStats_NVA_Click(object sender, EventArgs e)
+        {
+            chartMoney_NVA.Series.Clear();
+            var series = new System.Windows.Forms.DataVisualization.Charting.Series("Ежемесячная выручка");
+            series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            foreach (DataGridViewRow row in this.dataGridViewData_NVA.Rows)
+            {
+                if (!row.IsNewRow && row.Cells[3] != null && row.Cells[3].Value != null)
+                {
+                    string label = row.Cells[0].Value.ToString();
+                    double hours = Convert.ToDouble(row.Cells[3].Value);
+                    series.Points.AddXY(label, hours);
+                }
+            }
+            this.chartMoney_NVA.Series.Add(series);
+        }
+        private void dataGridViewData_NVA_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            int index = e.RowIndex;
+            string indexStr = (index).ToString();
+            object header = this.dataGridViewData_NVA.Rows[index].HeaderCell.Value;
+            if (header == null || !header.Equals(indexStr))
+                this.dataGridViewData_NVA.Rows[index].HeaderCell.Value = indexStr;
+        }
+        private void textBoxSearch_NVA_TextChanged_1(object sender, EventArgs e)
+        {
 
+            string currentText = textBoxSearch_NVA.Text;
+            foreach (DataGridViewRow row in dataGridViewData_NVA.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value != null && !string.IsNullOrEmpty(currentText) && cell.Value.ToString().ToUpper().Contains(currentText.ToUpper()))
+                    {
+                        cell.Style.BackColor = Color.LightGreen;
+                    }
+                    else
+                    {
+                        cell.Style.BackColor = Color.White; 
+                    }
+                }
+            }
+        }
 
     }
 }

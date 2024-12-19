@@ -49,6 +49,8 @@
             tabControl_NVA = new TabControl();
             tabPage2 = new TabPage();
             groupBoxFilter_NVA = new GroupBox();
+            label3 = new Label();
+            textBoxSearch_NVA = new TextBox();
             label2 = new Label();
             label1 = new Label();
             comboBoxNames_NVA = new ComboBox();
@@ -134,12 +136,13 @@
             buttonStats_NVA.Text = "Рассчитать";
             toolTip_NVA.SetToolTip(buttonStats_NVA, "Нажмите, чтобы получить диаграмму размеров выручки магазинов");
             buttonStats_NVA.UseVisualStyleBackColor = true;
+            buttonStats_NVA.Click += buttonStats_NVA_Click;
             // 
             // buttonFilter_NVA
             // 
-            buttonFilter_NVA.Location = new Point(392, 46);
+            buttonFilter_NVA.Location = new Point(491, 53);
             buttonFilter_NVA.Name = "buttonFilter_NVA";
-            buttonFilter_NVA.Size = new Size(109, 46);
+            buttonFilter_NVA.Size = new Size(72, 46);
             buttonFilter_NVA.TabIndex = 7;
             buttonFilter_NVA.Text = "button1";
             toolTip_NVA.SetToolTip(buttonFilter_NVA, "Нажмите для фильтрации");
@@ -219,33 +222,55 @@
             // 
             // groupBoxFilter_NVA
             // 
+            groupBoxFilter_NVA.Controls.Add(label3);
+            groupBoxFilter_NVA.Controls.Add(textBoxSearch_NVA);
             groupBoxFilter_NVA.Controls.Add(label2);
             groupBoxFilter_NVA.Controls.Add(label1);
             groupBoxFilter_NVA.Controls.Add(comboBoxNames_NVA);
             groupBoxFilter_NVA.Controls.Add(textBoxFilter_NVA);
             groupBoxFilter_NVA.Controls.Add(buttonFilter_NVA);
-            groupBoxFilter_NVA.Location = new Point(545, 6);
+            groupBoxFilter_NVA.Location = new Point(522, 6);
             groupBoxFilter_NVA.Name = "groupBoxFilter_NVA";
-            groupBoxFilter_NVA.Size = new Size(521, 113);
+            groupBoxFilter_NVA.Size = new Size(569, 113);
             groupBoxFilter_NVA.TabIndex = 11;
             groupBoxFilter_NVA.TabStop = false;
             groupBoxFilter_NVA.Text = "Фильтрация";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label3.Location = new Point(164, 37);
+            label3.Name = "label3";
+            label3.Size = new Size(120, 17);
+            label3.TabIndex = 14;
+            label3.Text = "Ключ для поиска:";
+            // 
+            // textBoxSearch_NVA
+            // 
+            textBoxSearch_NVA.Location = new Point(164, 63);
+            textBoxSearch_NVA.Name = "textBoxSearch_NVA";
+            textBoxSearch_NVA.Size = new Size(145, 29);
+            textBoxSearch_NVA.TabIndex = 13;
+            textBoxSearch_NVA.TextChanged += textBoxSearch_NVA_TextChanged_1;
+            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(185, 32);
+            label2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label2.Location = new Point(336, 38);
             label2.Name = "label2";
-            label2.Size = new Size(155, 21);
+            label2.Size = new Size(128, 17);
             label2.TabIndex = 12;
             label2.Text = "Ключ для фильтра:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(2, 32);
+            label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label1.Location = new Point(6, 37);
             label1.Name = "label1";
-            label1.Size = new Size(156, 21);
+            label1.Size = new Size(127, 17);
             label1.TabIndex = 11;
             label1.Text = "Выберите столбец:";
             // 
@@ -254,15 +279,15 @@
             comboBoxNames_NVA.FormattingEnabled = true;
             comboBoxNames_NVA.Location = new Point(6, 63);
             comboBoxNames_NVA.Name = "comboBoxNames_NVA";
-            comboBoxNames_NVA.Size = new Size(152, 29);
+            comboBoxNames_NVA.Size = new Size(130, 29);
             comboBoxNames_NVA.TabIndex = 10;
             comboBoxNames_NVA.SelectedIndexChanged += comboBoxNames_NVA_SelectedIndexChanged;
             // 
             // textBoxFilter_NVA
             // 
-            textBoxFilter_NVA.Location = new Point(185, 62);
+            textBoxFilter_NVA.Location = new Point(336, 63);
             textBoxFilter_NVA.Name = "textBoxFilter_NVA";
-            textBoxFilter_NVA.Size = new Size(155, 29);
+            textBoxFilter_NVA.Size = new Size(132, 29);
             textBoxFilter_NVA.TabIndex = 9;
             textBoxFilter_NVA.TextChanged += textBoxFilter_NVA_TextChanged;
             // 
@@ -278,6 +303,7 @@
             dataGridViewData_NVA.RowTemplate.Height = 24;
             dataGridViewData_NVA.Size = new Size(1073, 484);
             dataGridViewData_NVA.TabIndex = 0;
+            dataGridViewData_NVA.RowPrePaint += dataGridViewData_NVA_RowPrePaint;
             // 
             // Number_NVA
             // 
@@ -436,5 +462,7 @@
         private GroupBox groupBoxFilter_NVA;
         private Label label2;
         private Label label1;
+        private Label label3;
+        private TextBox textBoxSearch_NVA;
     }
 }
