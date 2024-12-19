@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="WinForms.DataVisualization" Version="1.9.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Tyuiu.NovikovaVA.Sprint7.Project.V2.Lib\Tyuiu.NovikovaVA.Sprint7.Project.V2.Lib.csproj" />
   </ItemGroup>
 

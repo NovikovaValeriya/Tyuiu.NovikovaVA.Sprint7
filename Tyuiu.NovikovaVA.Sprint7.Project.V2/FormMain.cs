@@ -90,6 +90,39 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
             FormInstruction formInstruction = new FormInstruction();
             formInstruction.ShowDialog();
         }
+        private void comboBoxNames_NVA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxNames_NVA.SelectedIndex != 0)
+            {
+                textBoxFilter_NVA.Enabled = true;
+                buttonFilter_NVA.Enabled = true;
+            }
+            else
+            {
+                textBoxFilter_NVA.Enabled = false;
+                buttonFilter_NVA.Enabled = false;
+            }
+        }
+        private void buttonFilter_NVA_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in dataGridViewData_NVA.Rows)
+            {
+                if (r.Cells[comboBoxNames_NVA.SelectedIndex - 1].Value.ToString().ToUpper().Contains(textBoxFilter_NVA.Text.ToUpper()))
+                {
+                    dataGridViewData_NVA.Rows[r.Index].Visible = true;
+                    dataGridViewData_NVA.Rows[r.Index].Selected = true;
+                }
+                else
+                {
+                    dataGridViewData_NVA.CurrentCell = null;
+                    dataGridViewData_NVA.Rows[r.Index].Visible = false;
+                }
+            }
+        }
+        private void textBoxFilter_NVA_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
 
     }
