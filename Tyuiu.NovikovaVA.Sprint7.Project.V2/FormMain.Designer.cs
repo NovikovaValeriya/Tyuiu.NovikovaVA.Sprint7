@@ -45,9 +45,11 @@
             справкаToolStripMenuItem = new ToolStripMenuItem();
             оПрограммеToolStripMenuItem = new ToolStripMenuItem();
             оРазработчикеToolStripMenuItem = new ToolStripMenuItem();
+            поддержкаToolStripMenuItem = new ToolStripMenuItem();
             groupBoxData_NVA = new GroupBox();
             tabControl_NVA = new TabControl();
             tabPage2 = new TabPage();
+            splitter1 = new Splitter();
             groupBoxFilter_NVA = new GroupBox();
             label3 = new Label();
             textBoxSearch_NVA = new TextBox();
@@ -164,7 +166,7 @@
             // 
             // справкаToolStripMenuItem
             // 
-            справкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { оПрограммеToolStripMenuItem, оРазработчикеToolStripMenuItem });
+            справкаToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { оПрограммеToolStripMenuItem, оРазработчикеToolStripMenuItem, поддержкаToolStripMenuItem });
             справкаToolStripMenuItem.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
             справкаToolStripMenuItem.ImageAlign = ContentAlignment.TopCenter;
             справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
@@ -184,6 +186,13 @@
             оРазработчикеToolStripMenuItem.Size = new Size(233, 30);
             оРазработчикеToolStripMenuItem.Text = "О разработчике";
             оРазработчикеToolStripMenuItem.Click += toolStripMenuItemInstruction_NVA_Click;
+            // 
+            // поддержкаToolStripMenuItem
+            // 
+            поддержкаToolStripMenuItem.Name = "поддержкаToolStripMenuItem";
+            поддержкаToolStripMenuItem.Size = new Size(233, 30);
+            поддержкаToolStripMenuItem.Text = "Поддержка";
+            поддержкаToolStripMenuItem.Click += поддержкаToolStripMenuItem_Click;
             // 
             // groupBoxData_NVA
             // 
@@ -208,6 +217,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(splitter1);
             tabPage2.Controls.Add(groupBoxFilter_NVA);
             tabPage2.Controls.Add(dataGridViewData_NVA);
             tabPage2.Controls.Add(groupBoxWorkData_NVA);
@@ -219,6 +229,14 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "База данных";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // splitter1
+            // 
+            splitter1.Location = new Point(3, 3);
+            splitter1.Name = "splitter1";
+            splitter1.Size = new Size(3, 619);
+            splitter1.TabIndex = 12;
+            splitter1.TabStop = false;
             // 
             // groupBoxFilter_NVA
             // 
@@ -293,6 +311,7 @@
             // 
             // dataGridViewData_NVA
             // 
+            dataGridViewData_NVA.AllowUserToAddRows = false;
             dataGridViewData_NVA.BackgroundColor = SystemColors.ButtonFace;
             dataGridViewData_NVA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewData_NVA.Columns.AddRange(new DataGridViewColumn[] { Number_NVA, Name_NVA, Adress_NVA, Money_NVA, Phone_Nva });
@@ -307,6 +326,7 @@
             // 
             // Number_NVA
             // 
+            Number_NVA.DataPropertyName = "1";
             Number_NVA.DividerWidth = 1;
             Number_NVA.HeaderText = "Номер филиала";
             Number_NVA.MinimumWidth = 6;
@@ -316,6 +336,7 @@
             // 
             // Name_NVA
             // 
+            Name_NVA.DataPropertyName = "2";
             Name_NVA.DividerWidth = 1;
             Name_NVA.HeaderText = "Название";
             Name_NVA.MinimumWidth = 6;
@@ -325,6 +346,7 @@
             // 
             // Adress_NVA
             // 
+            Adress_NVA.DataPropertyName = "3";
             Adress_NVA.DividerWidth = 1;
             Adress_NVA.HeaderText = "Адрес";
             Adress_NVA.MinimumWidth = 6;
@@ -334,15 +356,17 @@
             // 
             // Money_NVA
             // 
+            Money_NVA.DataPropertyName = "4";
             Money_NVA.DividerWidth = 1;
-            Money_NVA.HeaderText = "Ежемесечная выручка";
+            Money_NVA.HeaderText = "Капитал владельца в данной точке";
             Money_NVA.MinimumWidth = 6;
             Money_NVA.Name = "Money_NVA";
-            Money_NVA.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Money_NVA.SortMode = DataGridViewColumnSortMode.Programmatic;
             Money_NVA.Width = 214;
             // 
             // Phone_Nva
             // 
+            Phone_Nva.DataPropertyName = "5";
             Phone_Nva.HeaderText = "Контактный телефон";
             Phone_Nva.MinimumWidth = 6;
             Phone_Nva.Name = "Phone_Nva";
@@ -387,13 +411,13 @@
             // 
             chartArea1.Name = "ChartArea1";
             chartMoney_NVA.ChartAreas.Add(chartArea1);
-            legend1.Name = "Выручка в магазинах";
+            legend1.Name = "Сумма выручек";
             chartMoney_NVA.Legends.Add(legend1);
             chartMoney_NVA.Location = new Point(24, 19);
             chartMoney_NVA.Name = "chartMoney_NVA";
             chartMoney_NVA.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series1.ChartArea = "ChartArea1";
-            series1.Legend = "Выручка в магазинах";
+            series1.Legend = "Сумма выручек";
             series1.Name = "Series1";
             chartMoney_NVA.Series.Add(series1);
             chartMoney_NVA.Size = new Size(1049, 486);
@@ -449,11 +473,6 @@
         private TabControl tabControl_NVA;
         private TabPage tabPage2;
         private TabPage tabPage1;
-        private DataGridViewTextBoxColumn Number_NVA;
-        private DataGridViewTextBoxColumn Name_NVA;
-        private DataGridViewTextBoxColumn Adress_NVA;
-        private DataGridViewTextBoxColumn Money_NVA;
-        private DataGridViewTextBoxColumn Phone_Nva;
         private Button buttonStats_NVA;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartMoney_NVA;
         private ComboBox comboBoxNames_NVA;
@@ -464,5 +483,12 @@
         private Label label1;
         private Label label3;
         private TextBox textBoxSearch_NVA;
+        private DataGridViewTextBoxColumn Number_NVA;
+        private DataGridViewTextBoxColumn Name_NVA;
+        private DataGridViewTextBoxColumn Adress_NVA;
+        private DataGridViewTextBoxColumn Money_NVA;
+        private DataGridViewTextBoxColumn Phone_Nva;
+        private Splitter splitter1;
+        private ToolStripMenuItem поддержкаToolStripMenuItem;
     }
 }

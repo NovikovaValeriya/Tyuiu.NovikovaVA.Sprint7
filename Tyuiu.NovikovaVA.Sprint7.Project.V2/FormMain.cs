@@ -70,9 +70,12 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
             }
 
         }
+       
         private void buttonAdd_NVA_Click(object sender, EventArgs e)
         {
-            dataGridViewData_NVA.Rows.Add();
+           
+            int newRowIndex = dataGridViewData_NVA.Rows.Add();
+            dataGridViewData_NVA.Rows[newRowIndex].Cells[0].Value = newRowIndex + 1;
             buttonDel_NVA.Enabled = true;
         }
 
@@ -91,12 +94,12 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
 
             try
             {
-                // Confirm deletion (optional, but highly recommended).
+                
                 if (MessageBox.Show("Вы уверены, что хотите удалить строчку?", "Подтвердить удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int rowIndex = dataGridViewData_NVA.SelectedCells[0].RowIndex;
                     dataGridViewData_NVA.Rows.RemoveAt(rowIndex);
-                    dataGridViewData_NVA.ClearSelection(); // Clear selection.
+                    dataGridViewData_NVA.ClearSelection(); 
                 }
             }
             catch (Exception ex)
@@ -114,48 +117,54 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
             FormInstruction formInstruction = new FormInstruction();
             formInstruction.ShowDialog();
         }
-        private void comboBoxNames_NVA_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBoxFilter_NVA.Enabled = (comboBoxNames_NVA.SelectedIndex != 0);
-            buttonFilter_NVA.Enabled = (comboBoxNames_NVA.SelectedIndex != 0);
-        }
         private void buttonFilter_NVA_Click(object sender, EventArgs e)
         {
-            string keyValue = textBoxFilter_NVA.Text;
-            try
+            string filterText = textBoxFilter_NVA.Text.ToUpper().Trim();
+            if (string.IsNullOrEmpty(filterText))
             {
-                if (string.IsNullOrWhiteSpace(keyValue))
+                // Reset to show all rows
+                foreach (DataGridViewRow row in dataGridViewData_NVA.Rows)
                 {
-                    MessageBox.Show("Пожалуйста, введите значение ключа.");
+                    row.Visible = true;
+                }
+                return;
+            }
+
+            int columnIndex = comboBoxNames_NVA.SelectedIndex;
+            if (columnIndex < 0 || columnIndex >= dataGridViewData_NVA.Columns.Count)
+            {
+                MessageBox.Show("Please select a valid column.");
+                return;
+            }
+
+            foreach (DataGridViewRow row in dataGridViewData_NVA.Rows)
+            {
+                string cellValue = "";
+                try
+                {
+                    cellValue = row.Cells[columnIndex].Value?.ToString().ToUpper() ?? ""; 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error accessing cell value: {ex.Message}");
                     return;
                 }
-                int key = int.Parse(keyValue);
 
-                DataTable dataTable = (DataTable)dataGridViewData_NVA.DataSource;
-                DataRow[] foundRows = dataTable.Select($"Ежемесечная выручка = {346346222}"); // Замените "ID" на имя столбца с ключом
-
-                DataTable filteredTable = dataTable.Clone(); // Создаем копию структуры таблицы
-                foreach (DataRow row in foundRows)
-                {
-                    filteredTable.ImportRow(row);
-                }
-
-                dataGridViewData_NVA.DataSource = filteredTable;
-
+                row.Visible = cellValue.Contains(filterText);
             }
-            catch (FormatException)
-            {
-                MessageBox.Show("Некорректный формат ключа. Введите целое число.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Произошла ошибка: {ex.Message}");
-            }
+        }
+
+
+        private void comboBoxNames_NVA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBoxFilter_NVA.Enabled = (comboBoxNames_NVA.SelectedIndex >= 0);
+            buttonFilter_NVA.Enabled = (comboBoxNames_NVA.SelectedIndex >= 0);
         }
 
         private void textBoxFilter_NVA_TextChanged(object sender, EventArgs e)
         {
-
+            
+            buttonFilter_NVA.PerformClick(); 
         }
         private void buttonStats_NVA_Click(object sender, EventArgs e)
         {
@@ -200,6 +209,12 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
                 }
             }
         }
+        private void поддержкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormHelp FormHelp = new FormHelp();
+            FormHelp.ShowDialog();
+        }
+
 
     }
 }
