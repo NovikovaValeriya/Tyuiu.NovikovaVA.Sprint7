@@ -36,7 +36,7 @@
             // buttonOp_NVA
             // 
             buttonOp_NVA.BackColor = Color.MediumPurple;
-            buttonOp_NVA.Location = new Point(157, 133);
+            buttonOp_NVA.Location = new Point(157, 113);
             buttonOp_NVA.Name = "buttonOp_NVA";
             buttonOp_NVA.Size = new Size(156, 40);
             buttonOp_NVA.TabIndex = 0;
@@ -47,7 +47,7 @@
             // buttonOk2_NVA
             // 
             buttonOk2_NVA.BackColor = SystemColors.ControlDark;
-            buttonOk2_NVA.Location = new Point(384, 206);
+            buttonOk2_NVA.Location = new Point(384, 177);
             buttonOk2_NVA.Name = "buttonOk2_NVA";
             buttonOk2_NVA.Size = new Size(75, 23);
             buttonOk2_NVA.TabIndex = 1;
@@ -73,7 +73,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Menu;
-            ClientSize = new Size(471, 239);
+            ClientSize = new Size(471, 208);
             Controls.Add(textBoxQA_NVA);
             Controls.Add(buttonOk2_NVA);
             Controls.Add(buttonOp_NVA);

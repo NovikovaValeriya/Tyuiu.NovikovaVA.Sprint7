@@ -37,7 +37,7 @@
             labelInstruction_NVA.AutoSize = true;
             labelInstruction_NVA.BackColor = SystemColors.Menu;
             labelInstruction_NVA.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
-            labelInstruction_NVA.Location = new Point(27, 9);
+            labelInstruction_NVA.Location = new Point(12, 11);
             labelInstruction_NVA.Name = "labelInstruction_NVA";
             labelInstruction_NVA.Size = new Size(463, 170);
             labelInstruction_NVA.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(525, 190);
+            ClientSize = new Size(500, 190);
             Controls.Add(labelInstruction_NVA);
             Name = "FormAbout";
             StartPosition = FormStartPosition.CenterScreen;

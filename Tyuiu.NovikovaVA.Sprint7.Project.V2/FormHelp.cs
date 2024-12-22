@@ -25,18 +25,18 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
 
             try
             {
-                // Use ProcessStartInfo for better control
+                
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName = externalSourceUrl,
-                    UseShellExecute = true // Important for using default browser
+                    UseShellExecute = true 
                 };
                 Process.Start(psi);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка при открытии внешнего источника: {ex.Message}");
-                //Consider logging the exception for debugging
+                
             }
         }
             private void buttonOk2_NVA_Click(object sender, EventArgs e)

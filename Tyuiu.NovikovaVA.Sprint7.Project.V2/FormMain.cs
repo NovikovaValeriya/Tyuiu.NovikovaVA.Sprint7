@@ -9,9 +9,12 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
         {
             InitializeComponent();
             openFileDialog_NVA.Filter = "«начени€, разделЄнные зап€тыми(*.csv)|*.csv|¬се файлы(*.*)|*.*";
+
             
         }
         
+
+
         DataService ds = new DataService();
         string openFilePath;
         int cols, rows;
@@ -23,6 +26,7 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
             string[,] arrayValues = ds.LoadFromFileData(openFilePath);
             dataGridViewData_NVA.ColumnCount = cols = arrayValues.GetLength(1);
             dataGridViewData_NVA.RowCount = rows = arrayValues.GetLength(0);
+             
 
             for (int i = 0; i < rows; i++)
             {
@@ -117,59 +121,47 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
             FormInstruction formInstruction = new FormInstruction();
             formInstruction.ShowDialog();
         }
-        private void buttonFilter_NVA_Click(object sender, EventArgs e)
-        {
-            string filterText = textBoxFilter_NVA.Text.ToUpper().Trim();
-            if (string.IsNullOrEmpty(filterText))
-            {
-                // Reset to show all rows
-                foreach (DataGridViewRow row in dataGridViewData_NVA.Rows)
-                {
-                    row.Visible = true;
-                }
-                return;
-            }
-
-            int columnIndex = comboBoxNames_NVA.SelectedIndex;
-            if (columnIndex < 0 || columnIndex >= dataGridViewData_NVA.Columns.Count)
-            {
-                MessageBox.Show("Please select a valid column.");
-                return;
-            }
-
-            foreach (DataGridViewRow row in dataGridViewData_NVA.Rows)
-            {
-                string cellValue = "";
-                try
-                {
-                    cellValue = row.Cells[columnIndex].Value?.ToString().ToUpper() ?? ""; 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error accessing cell value: {ex.Message}");
-                    return;
-                }
-
-                row.Visible = cellValue.Contains(filterText);
-            }
-        }
-
-
-        private void comboBoxNames_NVA_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textBoxFilter_NVA.Enabled = (comboBoxNames_NVA.SelectedIndex >= 0);
-            buttonFilter_NVA.Enabled = (comboBoxNames_NVA.SelectedIndex >= 0);
-        }
+       
 
         private void textBoxFilter_NVA_TextChanged(object sender, EventArgs e)
         {
             
-            buttonFilter_NVA.PerformClick(); 
+        }
+
+        private void buttonFilter_NVA_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in dataGridViewData_NVA.Rows)
+            {
+                if ((r.Cells[comboBoxNames_NVA.SelectedIndex - 1].Value).ToString().ToUpper().Contains(textBoxFilter_NVA.Text.ToUpper()))
+                {
+                    dataGridViewData_NVA.Rows[r.Index].Visible = true;
+                    dataGridViewData_NVA.Rows[r.Index].Selected = true;
+                }
+                else
+                {
+                    dataGridViewData_NVA.CurrentCell = null;
+                    dataGridViewData_NVA.Rows[r.Index].Visible = false;
+                }
+            }
+        }
+
+        private void comboBoxColsNames_KEE_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxNames_NVA.SelectedIndex != 0)
+            {
+                textBoxFilter_NVA.Enabled = true;
+                textBoxFilter_NVA.Enabled = true;
+            }
+            else
+            {
+                textBoxFilter_NVA.Enabled = false;
+                textBoxFilter_NVA.Enabled = false;
+            }
         }
         private void buttonStats_NVA_Click(object sender, EventArgs e)
         {
             chartMoney_NVA.Series.Clear();
-            var series = new System.Windows.Forms.DataVisualization.Charting.Series("≈жемес€чна€ выручка");
+            var series = new System.Windows.Forms.DataVisualization.Charting.Series("—умма выручки в мес€ц");
             series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
             foreach (DataGridViewRow row in this.dataGridViewData_NVA.Rows)
             {

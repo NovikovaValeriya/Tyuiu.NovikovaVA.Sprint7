@@ -49,6 +49,8 @@
             groupBoxData_NVA = new GroupBox();
             tabControl_NVA = new TabControl();
             tabPage2 = new TabPage();
+            splitter3 = new Splitter();
+            splitter2 = new Splitter();
             splitter1 = new Splitter();
             groupBoxFilter_NVA = new GroupBox();
             label3 = new Label();
@@ -142,13 +144,15 @@
             // 
             // buttonFilter_NVA
             // 
-            buttonFilter_NVA.Location = new Point(491, 53);
+            buttonFilter_NVA.BackColor = SystemColors.AppWorkspace;
+            buttonFilter_NVA.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            buttonFilter_NVA.Location = new Point(440, 47);
             buttonFilter_NVA.Name = "buttonFilter_NVA";
-            buttonFilter_NVA.Size = new Size(72, 46);
+            buttonFilter_NVA.Size = new Size(132, 45);
             buttonFilter_NVA.TabIndex = 7;
-            buttonFilter_NVA.Text = "button1";
+            buttonFilter_NVA.Text = "Отфильтровать";
             toolTip_NVA.SetToolTip(buttonFilter_NVA, "Нажмите для фильтрации");
-            buttonFilter_NVA.UseVisualStyleBackColor = true;
+            buttonFilter_NVA.UseVisualStyleBackColor = false;
             buttonFilter_NVA.Click += buttonFilter_NVA_Click;
             // 
             // openFileDialog_NVA
@@ -217,6 +221,8 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(splitter3);
+            tabPage2.Controls.Add(splitter2);
             tabPage2.Controls.Add(splitter1);
             tabPage2.Controls.Add(groupBoxFilter_NVA);
             tabPage2.Controls.Add(dataGridViewData_NVA);
@@ -229,6 +235,22 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "База данных";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // splitter3
+            // 
+            splitter3.Location = new Point(9, 3);
+            splitter3.Name = "splitter3";
+            splitter3.Size = new Size(3, 619);
+            splitter3.TabIndex = 14;
+            splitter3.TabStop = false;
+            // 
+            // splitter2
+            // 
+            splitter2.Location = new Point(6, 3);
+            splitter2.Name = "splitter2";
+            splitter2.Size = new Size(3, 619);
+            splitter2.TabIndex = 13;
+            splitter2.TabStop = false;
             // 
             // splitter1
             // 
@@ -249,7 +271,7 @@
             groupBoxFilter_NVA.Controls.Add(buttonFilter_NVA);
             groupBoxFilter_NVA.Location = new Point(522, 6);
             groupBoxFilter_NVA.Name = "groupBoxFilter_NVA";
-            groupBoxFilter_NVA.Size = new Size(569, 113);
+            groupBoxFilter_NVA.Size = new Size(575, 113);
             groupBoxFilter_NVA.TabIndex = 11;
             groupBoxFilter_NVA.TabStop = false;
             groupBoxFilter_NVA.Text = "Фильтрация и поиск";
@@ -258,7 +280,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.Location = new Point(164, 37);
+            label3.Location = new Point(6, 37);
             label3.Name = "label3";
             label3.Size = new Size(120, 17);
             label3.TabIndex = 14;
@@ -266,7 +288,7 @@
             // 
             // textBoxSearch_NVA
             // 
-            textBoxSearch_NVA.Location = new Point(164, 63);
+            textBoxSearch_NVA.Location = new Point(6, 63);
             textBoxSearch_NVA.Name = "textBoxSearch_NVA";
             textBoxSearch_NVA.Size = new Size(145, 29);
             textBoxSearch_NVA.TabIndex = 13;
@@ -276,7 +298,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(336, 38);
+            label2.Location = new Point(302, 37);
             label2.Name = "label2";
             label2.Size = new Size(128, 17);
             label2.TabIndex = 12;
@@ -286,7 +308,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(6, 37);
+            label1.Location = new Point(157, 38);
             label1.Name = "label1";
             label1.Size = new Size(127, 17);
             label1.TabIndex = 11;
@@ -295,15 +317,15 @@
             // comboBoxNames_NVA
             // 
             comboBoxNames_NVA.FormattingEnabled = true;
-            comboBoxNames_NVA.Location = new Point(6, 63);
+            comboBoxNames_NVA.Items.AddRange(new object[] { "", "Номер филиала", "Название магазина", "Адрес", "Капитал владельца в данной точке", "Контактный телефон" });
+            comboBoxNames_NVA.Location = new Point(157, 63);
             comboBoxNames_NVA.Name = "comboBoxNames_NVA";
             comboBoxNames_NVA.Size = new Size(130, 29);
             comboBoxNames_NVA.TabIndex = 10;
-            comboBoxNames_NVA.SelectedIndexChanged += comboBoxNames_NVA_SelectedIndexChanged;
             // 
             // textBoxFilter_NVA
             // 
-            textBoxFilter_NVA.Location = new Point(336, 63);
+            textBoxFilter_NVA.Location = new Point(302, 62);
             textBoxFilter_NVA.Name = "textBoxFilter_NVA";
             textBoxFilter_NVA.Size = new Size(132, 29);
             textBoxFilter_NVA.TabIndex = 9;
@@ -312,7 +334,7 @@
             // dataGridViewData_NVA
             // 
             dataGridViewData_NVA.AllowUserToAddRows = false;
-            dataGridViewData_NVA.BackgroundColor = SystemColors.ButtonFace;
+            dataGridViewData_NVA.BackgroundColor = SystemColors.ActiveBorder;
             dataGridViewData_NVA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewData_NVA.Columns.AddRange(new DataGridViewColumn[] { Number_NVA, Name_NVA, Adress_NVA, Money_NVA, Phone_Nva });
             dataGridViewData_NVA.Location = new Point(18, 125);
@@ -320,7 +342,7 @@
             dataGridViewData_NVA.RowHeadersVisible = false;
             dataGridViewData_NVA.RowHeadersWidth = 50;
             dataGridViewData_NVA.RowTemplate.Height = 24;
-            dataGridViewData_NVA.Size = new Size(1073, 484);
+            dataGridViewData_NVA.Size = new Size(1073, 464);
             dataGridViewData_NVA.TabIndex = 0;
             dataGridViewData_NVA.RowPrePaint += dataGridViewData_NVA_RowPrePaint;
             // 
@@ -409,19 +431,22 @@
             // 
             // chartMoney_NVA
             // 
-            chartArea1.Name = "ChartArea1";
+            chartArea1.Name = "Размер выручки";
             chartMoney_NVA.ChartAreas.Add(chartArea1);
             legend1.Name = "Сумма выручек";
             chartMoney_NVA.Legends.Add(legend1);
-            chartMoney_NVA.Location = new Point(24, 19);
+            chartMoney_NVA.Location = new Point(17, 20);
             chartMoney_NVA.Name = "chartMoney_NVA";
             chartMoney_NVA.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series1.ChartArea = "ChartArea1";
+            series1.ChartArea = "Размер выручки";
             series1.Legend = "Сумма выручек";
-            series1.Name = "Series1";
+            series1.Name = "Сумма выручки в месяц";
+            series1.XAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series1.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             chartMoney_NVA.Series.Add(series1);
-            chartMoney_NVA.Size = new Size(1049, 486);
+            chartMoney_NVA.Size = new Size(1055, 486);
             chartMoney_NVA.TabIndex = 0;
+            chartMoney_NVA.Text = "Сумма выручки";
             // 
             // FormMain
             // 
@@ -477,18 +502,20 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartMoney_NVA;
         private ComboBox comboBoxNames_NVA;
         private TextBox textBoxFilter_NVA;
-        private Button buttonFilter_NVA;
         private GroupBox groupBoxFilter_NVA;
         private Label label2;
         private Label label1;
         private Label label3;
         private TextBox textBoxSearch_NVA;
+        private Splitter splitter1;
+        private ToolStripMenuItem поддержкаToolStripMenuItem;
+        private Button buttonFilter_NVA;
+        private Splitter splitter2;
+        private Splitter splitter3;
         private DataGridViewTextBoxColumn Number_NVA;
         private DataGridViewTextBoxColumn Name_NVA;
         private DataGridViewTextBoxColumn Adress_NVA;
         private DataGridViewTextBoxColumn Money_NVA;
         private DataGridViewTextBoxColumn Phone_Nva;
-        private Splitter splitter1;
-        private ToolStripMenuItem поддержкаToolStripMenuItem;
     }
 }
