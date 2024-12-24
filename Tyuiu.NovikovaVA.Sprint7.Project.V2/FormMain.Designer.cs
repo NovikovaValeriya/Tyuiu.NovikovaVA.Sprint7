@@ -60,16 +60,16 @@
             comboBoxNames_NVA = new ComboBox();
             textBoxFilter_NVA = new TextBox();
             dataGridViewData_NVA = new DataGridView();
-            Number_NVA = new DataGridViewTextBoxColumn();
-            Name_NVA = new DataGridViewTextBoxColumn();
-            Adress_NVA = new DataGridViewTextBoxColumn();
-            Money_NVA = new DataGridViewTextBoxColumn();
-            Phone_Nva = new DataGridViewTextBoxColumn();
             groupBoxWorkData_NVA = new GroupBox();
             groupBox1 = new GroupBox();
             tabPage1 = new TabPage();
             chartMoney_NVA = new System.Windows.Forms.DataVisualization.Charting.Chart();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            Number_NVA = new DataGridViewTextBoxColumn();
+            Name_NVA = new DataGridViewTextBoxColumn();
+            Adress_NVA = new DataGridViewTextBoxColumn();
+            Money_NVA = new DataGridViewTextBoxColumn();
+            Phone_Nva = new DataGridViewTextBoxColumn();
             menuStrip1.SuspendLayout();
             groupBoxData_NVA.SuspendLayout();
             tabControl_NVA.SuspendLayout();
@@ -346,55 +346,6 @@
             dataGridViewData_NVA.TabIndex = 0;
             dataGridViewData_NVA.RowPrePaint += dataGridViewData_NVA_RowPrePaint;
             // 
-            // Number_NVA
-            // 
-            Number_NVA.DataPropertyName = "1";
-            Number_NVA.DividerWidth = 1;
-            Number_NVA.HeaderText = "Номер филиала";
-            Number_NVA.MinimumWidth = 6;
-            Number_NVA.Name = "Number_NVA";
-            Number_NVA.SortMode = DataGridViewColumnSortMode.Programmatic;
-            Number_NVA.Width = 214;
-            // 
-            // Name_NVA
-            // 
-            Name_NVA.DataPropertyName = "2";
-            Name_NVA.DividerWidth = 1;
-            Name_NVA.HeaderText = "Название";
-            Name_NVA.MinimumWidth = 6;
-            Name_NVA.Name = "Name_NVA";
-            Name_NVA.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Name_NVA.Width = 214;
-            // 
-            // Adress_NVA
-            // 
-            Adress_NVA.DataPropertyName = "3";
-            Adress_NVA.DividerWidth = 1;
-            Adress_NVA.HeaderText = "Адрес";
-            Adress_NVA.MinimumWidth = 6;
-            Adress_NVA.Name = "Adress_NVA";
-            Adress_NVA.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Adress_NVA.Width = 214;
-            // 
-            // Money_NVA
-            // 
-            Money_NVA.DataPropertyName = "4";
-            Money_NVA.DividerWidth = 1;
-            Money_NVA.HeaderText = "Капитал владельца в данной точке";
-            Money_NVA.MinimumWidth = 6;
-            Money_NVA.Name = "Money_NVA";
-            Money_NVA.SortMode = DataGridViewColumnSortMode.Programmatic;
-            Money_NVA.Width = 214;
-            // 
-            // Phone_Nva
-            // 
-            Phone_Nva.DataPropertyName = "5";
-            Phone_Nva.HeaderText = "Контактный телефон";
-            Phone_Nva.MinimumWidth = 6;
-            Phone_Nva.Name = "Phone_Nva";
-            Phone_Nva.SortMode = DataGridViewColumnSortMode.NotSortable;
-            Phone_Nva.Width = 214;
-            // 
             // groupBoxWorkData_NVA
             // 
             groupBoxWorkData_NVA.Controls.Add(buttonOpen_NVA);
@@ -447,6 +398,55 @@
             chartMoney_NVA.Size = new Size(1055, 486);
             chartMoney_NVA.TabIndex = 0;
             chartMoney_NVA.Text = "Сумма выручки";
+            // 
+            // Number_NVA
+            // 
+            Number_NVA.DataPropertyName = "1";
+            Number_NVA.DividerWidth = 1;
+            Number_NVA.HeaderText = "Номер филиала";
+            Number_NVA.MinimumWidth = 6;
+            Number_NVA.Name = "Number_NVA";
+            Number_NVA.SortMode = DataGridViewColumnSortMode.Programmatic;
+            Number_NVA.Width = 214;
+            // 
+            // Name_NVA
+            // 
+            Name_NVA.DataPropertyName = "2";
+            Name_NVA.DividerWidth = 1;
+            Name_NVA.HeaderText = "Название";
+            Name_NVA.MinimumWidth = 6;
+            Name_NVA.Name = "Name_NVA";
+            Name_NVA.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Name_NVA.Width = 214;
+            // 
+            // Adress_NVA
+            // 
+            Adress_NVA.DataPropertyName = "3";
+            Adress_NVA.DividerWidth = 1;
+            Adress_NVA.HeaderText = "Адрес";
+            Adress_NVA.MinimumWidth = 6;
+            Adress_NVA.Name = "Adress_NVA";
+            Adress_NVA.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Adress_NVA.Width = 214;
+            // 
+            // Money_NVA
+            // 
+            Money_NVA.DataPropertyName = "4";
+            Money_NVA.DividerWidth = 1;
+            Money_NVA.HeaderText = "Капитал владельца в данной точке";
+            Money_NVA.MinimumWidth = 6;
+            Money_NVA.Name = "Money_NVA";
+            Money_NVA.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Money_NVA.Width = 214;
+            // 
+            // Phone_Nva
+            // 
+            Phone_Nva.DataPropertyName = "5";
+            Phone_Nva.HeaderText = "Контактный телефон";
+            Phone_Nva.MinimumWidth = 6;
+            Phone_Nva.Name = "Phone_Nva";
+            Phone_Nva.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Phone_Nva.Width = 214;
             // 
             // FormMain
             // 

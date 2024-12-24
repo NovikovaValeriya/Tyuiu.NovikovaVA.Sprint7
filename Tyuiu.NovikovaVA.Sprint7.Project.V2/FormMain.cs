@@ -77,10 +77,26 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
        
         private void buttonAdd_NVA_Click(object sender, EventArgs e)
         {
-           
-            int newRowIndex = dataGridViewData_NVA.Rows.Add();
-            dataGridViewData_NVA.Rows[newRowIndex].Cells[0].Value = newRowIndex + 1;
-            buttonDel_NVA.Enabled = true;
+
+            try
+            {
+                int newRowIndex = dataGridViewData_NVA.Rows.Add();
+                string numberColumnName = dataGridViewData_NVA.Columns.Count > 0 ? dataGridViewData_NVA.Columns[0].Name : null;
+
+                if (!string.IsNullOrEmpty(numberColumnName))
+                {
+                    dataGridViewData_NVA.Rows[newRowIndex].Cells[numberColumnName].Value = newRowIndex + 1;
+                }
+
+                if (dataGridViewData_NVA.Rows.Count > 0)
+                {
+                    buttonDel_NVA.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка добавления новой строки {ex.Message}");
+            }
         }
 
         private void buttonInfo_NVA_Click(object sender, EventArgs e)
@@ -90,21 +106,33 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
         }
         private void buttonDel_NVA_Click(object sender, EventArgs e)
         {
-            if (dataGridViewData_NVA.SelectedCells.Count == 0)
+            dataGridViewData_NVA.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            if (dataGridViewData_NVA.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Пожалуйста выберите строку для удаления.", "Строка не выбрана", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Пожалуйста, выберите строку для удаления.", "Строка не выбрана", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show("Вы уверены, что хотите удалить выбранные строки?", "Подтвердить удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
                 return;
             }
 
             try
             {
-                
-                if (MessageBox.Show("Вы уверены, что хотите удалить строчку?", "Подтвердить удаление", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+                List<int> rowsToDelete = new List<int>();
+                foreach (DataGridViewRow selectedRow in dataGridViewData_NVA.SelectedRows)
+                    rowsToDelete.Add(selectedRow.Index);
+
+                for (int i = rowsToDelete.Count - 1; i >= 0; i--)
                 {
-                    int rowIndex = dataGridViewData_NVA.SelectedCells[0].RowIndex;
-                    dataGridViewData_NVA.Rows.RemoveAt(rowIndex);
-                    dataGridViewData_NVA.ClearSelection(); 
+                    dataGridViewData_NVA.Rows.RemoveAt(rowsToDelete[i]);
                 }
+
+                dataGridViewData_NVA.ClearSelection();
+
+
             }
             catch (Exception ex)
             {
@@ -206,6 +234,7 @@ namespace Tyuiu.NovikovaVA.Sprint7.Project.V2
             FormHelp FormHelp = new FormHelp();
             FormHelp.ShowDialog();
         }
+        
 
 
     }
